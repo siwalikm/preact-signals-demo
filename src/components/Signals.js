@@ -1,5 +1,8 @@
 import "../style.css";
-import { signal, computed, effect } from "@preact/signals";
+import { signal, computed, effect, batch } from "@preact/signals";
+
+const name = signal("John");
+const surname = signal("Doe");
 
 const count = signal(0);
 const todos = signal([
@@ -12,6 +15,10 @@ const remainingCount = computed(() => {
 
 effect(() => {
   console.log(`count updated to ${count.value}`);
+});
+
+effect(() => {
+  console.log(name.value, surname.value);
 });
 
 const ComponentA = ({ count, onClick }) => {
@@ -39,6 +46,10 @@ const ComponentC = ({ count, onClick }) => {
 const SignalsDemo = () => {
   const onClick = () => {
     count.value = count.value + 1;
+    batch(() => {
+      name.value = "Jane";
+      surname.value = "Smith";
+    });
   };
   return <ComponentA count={count} onClick={onClick} />;
 };
