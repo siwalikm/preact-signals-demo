@@ -1,5 +1,5 @@
 import "../style.css";
-import { signal, computed } from "@preact/signals";
+import { signal, computed, effect } from "@preact/signals";
 
 const count = signal(0);
 const todos = signal([
@@ -8,6 +8,10 @@ const todos = signal([
 ]);
 const remainingCount = computed(() => {
   return todos.value.filter((todo) => !todo.completed).length;
+});
+
+effect(() => {
+  console.log(`count updated to ${count.value}`);
 });
 
 const ComponentA = ({ count, onClick }) => {
