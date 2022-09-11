@@ -1,8 +1,14 @@
 import "../style.css";
-import { useState } from "preact/hooks";
-import { signal } from "@preact/signals";
+import { signal, computed } from "@preact/signals";
 
 const count = signal(0);
+const todos = signal([
+  { text: "Buy milk", completed: true },
+  { text: "Check if subscribed", completed: false },
+]);
+const remainingCount = computed(() => {
+  return todos.value.filter((todo) => !todo.completed).length;
+});
 
 const ComponentA = ({ count, onClick }) => {
   return (
@@ -20,7 +26,8 @@ const ComponentB = () => {
 const ComponentC = ({ count, onClick }) => {
   return (
     <div className="yellow-box">
-      <button onClick={onClick}>click {count.value}</button>
+      <button onClick={onClick}>click {count}</button>
+      <div>remaining tasks: {remainingCount}</div>
     </div>
   );
 };
