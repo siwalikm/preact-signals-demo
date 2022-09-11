@@ -1,0 +1,34 @@
+html,
+body {
+  font: 14px/1.21 "Helvetica Neue", arial, sans-serif;
+  zoom: 140%;
+}
+
+body div {
+  border-radius: 2px;
+}
+
+.blue-box {
+  background: #004da5;
+  padding: 20px;
+  margin: 4px;
+  color: white;
+}
+
+.yellow-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f2c431;
+  padding: 20px;
+  margin: 4px;
+}
+
+.beige-box {
+  background: #ffe0b2;
+  padding: 20px;
+}
+
+button {
+  cursor: pointer;
+}
